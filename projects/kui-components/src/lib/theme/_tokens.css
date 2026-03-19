@@ -1,62 +1,76 @@
 :root,
 [data-theme='light'] {
-    --kui-background: oklch(1 0 0);
-    --kui-foreground: oklch(0.145 0.004 285.82);
+    --kui-background: oklch(0.96 0.004 285);
+    --kui-foreground: oklch(0.24 0.007 285.82);
 
-    --kui-card: oklch(1 0 0);
-    --kui-card-foreground: oklch(0.145 0.004 285.82);
+    --kui-card: oklch(0.98 0.003 285);
+    --kui-card-foreground: oklch(0.24 0.007 285.82);
 
-    --kui-primary: oklch(0.205 0.006 285.88);
-    --kui-primary-foreground: oklch(0.985 0 0);
+    --kui-primary: oklch(0.24 0.007 285.88);
+    --kui-primary-foreground: oklch(0.97 0.003 285);
 
-    --kui-secondary: oklch(0.97 0.001 286.38);
-    --kui-secondary-foreground: oklch(0.205 0.006 285.88);
+    --kui-secondary: oklch(0.92 0.005 286.38);
+    --kui-secondary-foreground: oklch(0.24 0.007 285.88);
 
     --kui-destructive: oklch(0.577 0.245 27.33);
-    --kui-destructive-foreground: oklch(0.985 0 0);
+    --kui-destructive-foreground: oklch(0.97 0.003 285);
 
-    --kui-muted: oklch(0.97 0.001 286.38);
-    --kui-muted-foreground: oklch(0.556 0.016 285.94);
+    --kui-muted: oklch(0.92 0.005 286.38);
+    --kui-muted-foreground: oklch(0.48 0.016 285.94);
 
-    --kui-accent: oklch(0.97 0.001 286.38);
-    --kui-accent-foreground: oklch(0.205 0.006 285.88);
+    --kui-accent: oklch(0.92 0.005 286.38);
+    --kui-accent-foreground: oklch(0.24 0.007 285.88);
 
-    --kui-border: oklch(0.922 0.004 286.32);
-    --kui-input: oklch(0.922 0.004 286.32);
+    --kui-border: oklch(0.87 0.005 286.32);
+    --kui-input: oklch(0.87 0.005 286.32);
     --kui-ring: oklch(0.708 0.165 254.62);
+
+    /* code blocks are light-themed in light mode */
+    --kui-code-bg: oklch(0.91 0.005 285);
+    --kui-code-header: oklch(0.88 0.005 285);
+    --kui-code-border: oklch(0.83 0.006 285);
+    --kui-code-foreground: oklch(0.24 0.007 285);
+    --kui-code-muted: oklch(0.5 0.01 285.9);
 
     --kui-radius: 0.5rem;
 
-    --kui-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --kui-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --kui-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+    --kui-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.12), 0 1px 2px -1px rgb(0 0 0 / 0.08);
 }
 
 [data-theme='dark'],
 .dark {
-    --kui-background: oklch(0.145 0.004 285.82);
-    --kui-foreground: oklch(0.985 0 0);
+    --kui-background: oklch(0.17 0.006 285.82);
+    --kui-foreground: oklch(0.90 0.004 285);
 
-    --kui-card: oklch(0.205 0.006 285.88);
-    --kui-card-foreground: oklch(0.985 0 0);
+    --kui-card: oklch(0.21 0.007 285.88);
+    --kui-card-foreground: oklch(0.90 0.004 285);
 
-    --kui-primary: oklch(0.985 0 0);
-    --kui-primary-foreground: oklch(0.205 0.006 285.88);
+    --kui-primary: oklch(0.90 0.004 285);
+    --kui-primary-foreground: oklch(0.21 0.007 285.88);
 
-    --kui-secondary: oklch(0.269 0.006 285.89);
-    --kui-secondary-foreground: oklch(0.985 0 0);
+    --kui-secondary: oklch(0.27 0.007 285.89);
+    --kui-secondary-foreground: oklch(0.90 0.004 285);
 
-    --kui-destructive: oklch(0.396 0.141 25.72);
-    --kui-destructive-foreground: oklch(0.985 0 0);
+    --kui-destructive: oklch(0.5 0.2 27.33);
+    --kui-destructive-foreground: oklch(0.90 0.004 285);
 
-    --kui-muted: oklch(0.269 0.006 285.89);
-    --kui-muted-foreground: oklch(0.708 0.014 285.82);
+    --kui-muted: oklch(0.27 0.007 285.89);
+    --kui-muted-foreground: oklch(0.64 0.014 285.82);
 
-    --kui-accent: oklch(0.269 0.006 285.89);
-    --kui-accent-foreground: oklch(0.985 0 0);
+    --kui-accent: oklch(0.27 0.007 285.89);
+    --kui-accent-foreground: oklch(0.90 0.004 285);
 
-    --kui-border: oklch(0.269 0.006 285.89);
-    --kui-input: oklch(0.269 0.006 285.89);
+    --kui-border: oklch(0.3 0.008 285.89);
+    --kui-input: oklch(0.3 0.008 285.89);
     --kui-ring: oklch(0.551 0.136 254.62);
+
+    /* code blocks are dark-themed in dark mode, elevated above page */
+    --kui-code-bg: oklch(0.24 0.007 285.88);
+    --kui-code-header: oklch(0.28 0.007 285.88);
+    --kui-code-border: oklch(0.35 0.008 285.89);
+    --kui-code-foreground: oklch(0.88 0.003 285);
+    --kui-code-muted: oklch(0.56 0.01 285.9);
 
     --kui-radius: 0.5rem;
 
@@ -66,30 +80,36 @@
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) {
-        --kui-background: oklch(0.145 0.004 285.82);
-        --kui-foreground: oklch(0.985 0 0);
+        --kui-background: oklch(0.17 0.006 285.82);
+        --kui-foreground: oklch(0.90 0.004 285);
 
-        --kui-card: oklch(0.205 0.006 285.88);
-        --kui-card-foreground: oklch(0.985 0 0);
+        --kui-card: oklch(0.21 0.007 285.88);
+        --kui-card-foreground: oklch(0.90 0.004 285);
 
-        --kui-primary: oklch(0.985 0 0);
-        --kui-primary-foreground: oklch(0.205 0.006 285.88);
+        --kui-primary: oklch(0.90 0.004 285);
+        --kui-primary-foreground: oklch(0.21 0.007 285.88);
 
-        --kui-secondary: oklch(0.269 0.006 285.89);
-        --kui-secondary-foreground: oklch(0.985 0 0);
+        --kui-secondary: oklch(0.27 0.007 285.89);
+        --kui-secondary-foreground: oklch(0.90 0.004 285);
 
-        --kui-destructive: oklch(0.396 0.141 25.72);
-        --kui-destructive-foreground: oklch(0.985 0 0);
+        --kui-destructive: oklch(0.5 0.2 27.33);
+        --kui-destructive-foreground: oklch(0.90 0.004 285);
 
-        --kui-muted: oklch(0.269 0.006 285.89);
-        --kui-muted-foreground: oklch(0.708 0.014 285.82);
+        --kui-muted: oklch(0.27 0.007 285.89);
+        --kui-muted-foreground: oklch(0.64 0.014 285.82);
 
-        --kui-accent: oklch(0.269 0.006 285.89);
-        --kui-accent-foreground: oklch(0.985 0 0);
+        --kui-accent: oklch(0.27 0.007 285.89);
+        --kui-accent-foreground: oklch(0.90 0.004 285);
 
-        --kui-border: oklch(0.269 0.006 285.89);
-        --kui-input: oklch(0.269 0.006 285.89);
+        --kui-border: oklch(0.3 0.008 285.89);
+        --kui-input: oklch(0.3 0.008 285.89);
         --kui-ring: oklch(0.551 0.136 254.62);
+
+        --kui-code-bg: oklch(0.24 0.007 285.88);
+        --kui-code-header: oklch(0.28 0.007 285.88);
+        --kui-code-border: oklch(0.35 0.008 285.89);
+        --kui-code-foreground: oklch(0.88 0.003 285);
+        --kui-code-muted: oklch(0.56 0.01 285.9);
 
         --kui-radius: 0.5rem;
 

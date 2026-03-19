@@ -4,9 +4,9 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
     selector: 'app-code-block',
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-        <div class="overflow-hidden rounded-lg border border-[var(--kui-border)] bg-[oklch(0.16_0.004_285.82)] text-[oklch(0.93_0_0)]">
+        <div class="overflow-hidden rounded-lg border border-[var(--kui-code-border)] bg-[var(--kui-code-bg)] text-[var(--kui-code-foreground)]">
             <div
-                class="flex items-center justify-between border-b border-[oklch(0.25_0.006_285.89)] px-4 py-2.5 bg-[oklch(0.19_0.005_285.85)]"
+                class="flex items-center justify-between border-b border-[var(--kui-code-border)] px-4 py-2.5 bg-[var(--kui-code-header)]"
             >
                 <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1.5">
@@ -14,10 +14,10 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
                         <span class="size-3 rounded-full bg-[#febc2e]"></span>
                         <span class="size-3 rounded-full bg-[#28c840]"></span>
                     </div>
-                    <span class="text-xs text-[oklch(0.6_0.01_285.9)]">{{ language() }}</span>
+                    <span class="text-xs text-[var(--kui-code-muted)]">{{ language() }}</span>
                 </div>
                 <button
-                    class="rounded-md px-2 py-1 text-xs text-[oklch(0.6_0.01_285.9)] hover:bg-[oklch(0.25_0.006_285.89)] hover:text-[oklch(0.85_0_0)] transition-colors"
+                    class="rounded-md px-2 py-1 text-xs text-[var(--kui-code-muted)] hover:bg-[var(--kui-code-border)] hover:text-[var(--kui-code-foreground)] transition-colors"
                     (click)="copyCode()"
                 >
                     {{ copied() ? 'Copied!' : 'Copy' }}
