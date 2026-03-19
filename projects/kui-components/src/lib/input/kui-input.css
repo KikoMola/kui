@@ -38,6 +38,35 @@
     box-shadow: 0 0 0 2px color-mix(in oklch, var(--kui-destructive) 25%, transparent);
 }
 
+/* ── Validation states ── */
+
+.kui-input[data-state='success'] {
+    border-color: var(--kui-success);
+}
+
+.kui-input[data-state='success']:focus-visible {
+    border-color: var(--kui-success);
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--kui-success) 25%, transparent);
+}
+
+.kui-input[data-state='warning'] {
+    border-color: var(--kui-warning);
+}
+
+.kui-input[data-state='warning']:focus-visible {
+    border-color: var(--kui-warning);
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--kui-warning) 25%, transparent);
+}
+
+.kui-input[data-state='error'] {
+    border-color: var(--kui-destructive);
+}
+
+.kui-input[data-state='error']:focus-visible {
+    border-color: var(--kui-destructive);
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--kui-destructive) 25%, transparent);
+}
+
 /* File input reset */
 .kui-input[type='file'] {
     padding-top: 0.3125rem;

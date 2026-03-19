@@ -15,6 +15,12 @@
     --kui-destructive: oklch(0.577 0.245 27.33);
     --kui-destructive-foreground: oklch(0.97 0.003 285);
 
+    --kui-success: oklch(0.59 0.17 149);
+    --kui-success-foreground: oklch(0.97 0.003 285);
+
+    --kui-warning: oklch(0.75 0.16 70);
+    --kui-warning-foreground: oklch(0.24 0.007 285);
+
     --kui-muted: oklch(0.92 0.005 286.38);
     --kui-muted-foreground: oklch(0.48 0.016 285.94);
 
@@ -55,6 +61,12 @@
     --kui-destructive: oklch(0.5 0.2 27.33);
     --kui-destructive-foreground: oklch(0.90 0.004 285);
 
+    --kui-success: oklch(0.55 0.17 149);
+    --kui-success-foreground: oklch(0.90 0.004 285);
+
+    --kui-warning: oklch(0.72 0.16 70);
+    --kui-warning-foreground: oklch(0.17 0.006 285);
+
     --kui-muted: oklch(0.27 0.007 285.89);
     --kui-muted-foreground: oklch(0.64 0.014 285.82);
 
@@ -94,6 +106,12 @@
 
         --kui-destructive: oklch(0.5 0.2 27.33);
         --kui-destructive-foreground: oklch(0.90 0.004 285);
+
+        --kui-success: oklch(0.55 0.17 149);
+        --kui-success-foreground: oklch(0.90 0.004 285);
+
+        --kui-warning: oklch(0.72 0.16 70);
+        --kui-warning-foreground: oklch(0.17 0.006 285);
 
         --kui-muted: oklch(0.27 0.007 285.89);
         --kui-muted-foreground: oklch(0.64 0.014 285.82);

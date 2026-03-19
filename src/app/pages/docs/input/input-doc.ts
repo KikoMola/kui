@@ -1,12 +1,22 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { KuiDescription, KuiFormField, KuiInput, KuiLabel } from 'kui-components';
+import { KuiDescription, KuiError, KuiFormField, KuiInput, KuiLabel } from 'kui-components';
+import { LucideAngularModule } from 'lucide-angular';
 import { CodeBlock } from '../../../shared/code-block/code-block';
 import { ComponentPreview } from '../../../shared/component-preview/component-preview';
 
 @Component({
     selector: 'app-input-doc',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [KuiInput, KuiFormField, KuiLabel, KuiDescription, CodeBlock, ComponentPreview],
+    imports: [
+        KuiInput,
+        KuiFormField,
+        KuiLabel,
+        KuiDescription,
+        KuiError,
+        CodeBlock,
+        ComponentPreview,
+        LucideAngularModule,
+    ],
     template: `
         <div class="max-w-3xl space-y-10">
             <!-- Header -->
@@ -47,6 +57,109 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                         <input kuiInput size="lg" placeholder="Large" />
                     </div>
                 </app-component-preview>
+            </section>
+
+            <!-- With Icons -->
+            <section>
+                <h2 class="mb-4 text-xl font-semibold" id="with-icons">With Icons</h2>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="mb-2 font-medium">Icon Left</h3>
+                        <app-component-preview [code]="iconLeftCode">
+                            <div class="relative w-full max-w-sm">
+                                <lucide-icon
+                                    name="search"
+                                    [size]="16"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--kui-muted-foreground)]"
+                                />
+                                <input kuiInput placeholder="Search..." class="pl-9" />
+                            </div>
+                        </app-component-preview>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-2 font-medium">Icon Right</h3>
+                        <app-component-preview [code]="iconRightCode">
+                            <div class="relative w-full max-w-sm">
+                                <input kuiInput placeholder="you&#64;example.com" type="email" class="pr-9" />
+                                <lucide-icon
+                                    name="mail"
+                                    [size]="16"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--kui-muted-foreground)]"
+                                />
+                            </div>
+                        </app-component-preview>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-2 font-medium">Both Sides</h3>
+                        <app-component-preview [code]="iconBothCode">
+                            <div class="relative w-full max-w-sm">
+                                <lucide-icon
+                                    name="mail"
+                                    [size]="16"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--kui-muted-foreground)]"
+                                />
+                                <input kuiInput placeholder="you&#64;example.com" type="email" class="pl-9 pr-9" />
+                                <lucide-icon
+                                    name="circle-check"
+                                    [size]="16"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--kui-success)]"
+                                />
+                            </div>
+                        </app-component-preview>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Validation States -->
+            <section>
+                <h2 class="mb-4 text-xl font-semibold" id="validation">Validation States</h2>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="mb-2 font-medium">Success</h3>
+                        <app-component-preview [code]="successCode">
+                            <div kuiFormField class="w-full max-w-sm">
+                                <label kuiLabel>Username</label>
+                                <input kuiInput state="success" value="johndoe" />
+                                <span class="kui-success-message flex items-center gap-1 text-sm">
+                                    <lucide-icon name="circle-check" [size]="14" />
+                                    Username is available
+                                </span>
+                            </div>
+                        </app-component-preview>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-2 font-medium">Warning</h3>
+                        <app-component-preview [code]="warningCode">
+                            <div kuiFormField class="w-full max-w-sm">
+                                <label kuiLabel>Password</label>
+                                <input kuiInput state="warning" type="password" value="abc123" />
+                                <span class="kui-warning-message flex items-center gap-1 text-sm">
+                                    <lucide-icon name="circle-alert" [size]="14" />
+                                    Password is weak, consider adding symbols
+                                </span>
+                            </div>
+                        </app-component-preview>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-2 font-medium">Error</h3>
+                        <app-component-preview [code]="errorCode">
+                            <div kuiFormField class="w-full max-w-sm">
+                                <label kuiLabel>Email</label>
+                                <input kuiInput state="error" value="not-an-email" type="email" />
+                                <span kuiError class="flex items-center gap-1">
+                                    <lucide-icon name="circle-x" [size]="14" />
+                                    Please enter a valid email address
+                                </span>
+                            </div>
+                        </app-component-preview>
+                    </div>
+                </div>
             </section>
 
             <!-- Disabled -->
@@ -95,6 +208,11 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                             <tr class="border-b border-[var(--kui-border)]">
                                 <td class="px-4 py-2 font-mono text-xs">size</td>
                                 <td class="px-4 py-2 font-mono text-xs">'default' | 'sm' | 'lg'</td>
+                                <td class="px-4 py-2 font-mono text-xs">'default'</td>
+                            </tr>
+                            <tr class="border-b border-[var(--kui-border)]">
+                                <td class="px-4 py-2 font-mono text-xs">state</td>
+                                <td class="px-4 py-2 font-mono text-xs">'default' | 'success' | 'warning' | 'error'</td>
                                 <td class="px-4 py-2 font-mono text-xs">'default'</td>
                             </tr>
                             <tr>
@@ -159,6 +277,53 @@ export class MyComponent {}`;
     protected readonly sizesCode = `<input kuiInput size="sm" placeholder="Small" />
 <input kuiInput placeholder="Default" />
 <input kuiInput size="lg" placeholder="Large" />`;
+
+    protected readonly iconLeftCode = `<div class="relative">
+    <lucide-icon name="search" [size]="16"
+        class="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+    <input kuiInput placeholder="Search..." class="pl-9" />
+</div>`;
+
+    protected readonly iconRightCode = `<div class="relative">
+    <input kuiInput placeholder="you@example.com" type="email" class="pr-9" />
+    <lucide-icon name="mail" [size]="16"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted" />
+</div>`;
+
+    protected readonly iconBothCode = `<div class="relative">
+    <lucide-icon name="mail" [size]="16"
+        class="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+    <input kuiInput placeholder="you@example.com" class="pl-9 pr-9" />
+    <lucide-icon name="circle-check" [size]="16"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-success" />
+</div>`;
+
+    protected readonly successCode = `<div kuiFormField>
+    <label kuiLabel>Username</label>
+    <input kuiInput state="success" value="johndoe" />
+    <span class="kui-success-message flex items-center gap-1 text-sm">
+        <lucide-icon name="circle-check" [size]="14" />
+        Username is available
+    </span>
+</div>`;
+
+    protected readonly warningCode = `<div kuiFormField>
+    <label kuiLabel>Password</label>
+    <input kuiInput state="warning" type="password" value="abc123" />
+    <span class="kui-warning-message flex items-center gap-1 text-sm">
+        <lucide-icon name="circle-alert" [size]="14" />
+        Password is weak, consider adding symbols
+    </span>
+</div>`;
+
+    protected readonly errorCode = `<div kuiFormField>
+    <label kuiLabel>Email</label>
+    <input kuiInput state="error" value="not-an-email" type="email" />
+    <span kuiError class="flex items-center gap-1">
+        <lucide-icon name="circle-x" [size]="14" />
+        Please enter a valid email address
+    </span>
+</div>`;
 
     protected readonly disabledCode = `<input kuiInput placeholder="Disabled" disabled />`;
 

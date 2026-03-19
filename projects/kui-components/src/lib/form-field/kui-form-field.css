@@ -21,3 +21,13 @@
     font-size: 0.8125rem;
     color: var(--kui-destructive);
 }
+
+.kui-success-message {
+    font-size: 0.8125rem;
+    color: var(--kui-success);
+}
+
+.kui-warning-message {
+    font-size: 0.8125rem;
+    color: var(--kui-warning);
+}

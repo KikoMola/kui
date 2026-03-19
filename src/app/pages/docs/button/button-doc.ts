@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { KuiButton } from 'kui-components';
+import { LucideAngularModule } from 'lucide-angular';
 import { CodeBlock } from '../../../shared/code-block/code-block';
 import { ComponentPreview } from '../../../shared/component-preview/component-preview';
 
 @Component({
     selector: 'app-button-doc',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [KuiButton, CodeBlock, ComponentPreview],
+    imports: [KuiButton, CodeBlock, ComponentPreview, LucideAngularModule],
     template: `
         <div class="max-w-3xl space-y-10">
             <!-- Header -->
@@ -85,7 +86,72 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                     <button kuiButton size="sm">Small</button>
                     <button kuiButton>Default</button>
                     <button kuiButton size="lg">Large</button>
-                    <button kuiButton size="icon" aria-label="Star">★</button>
+                    <button kuiButton size="icon" aria-label="Heart">
+                        <lucide-icon name="heart" [size]="16" />
+                    </button>
+                </app-component-preview>
+            </section>
+
+            <!-- With Icons -->
+            <section>
+                <h2 class="mb-4 text-xl font-semibold" id="with-icons">With Icons</h2>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="mb-2 font-medium">Icon Left</h3>
+                        <app-component-preview [code]="iconLeftCode">
+                            <button kuiButton class="inline-flex items-center gap-2">
+                                <lucide-icon name="mail" [size]="16" />
+                                Login with Email
+                            </button>
+                        </app-component-preview>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-2 font-medium">Icon Right</h3>
+                        <app-component-preview [code]="iconRightCode">
+                            <button kuiButton class="inline-flex items-center gap-2">
+                                Send
+                                <lucide-icon name="send" [size]="16" />
+                            </button>
+                        </app-component-preview>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-2 font-medium">Icon Only</h3>
+                        <app-component-preview [code]="iconOnlyCode">
+                            <button kuiButton size="icon" variant="outline" aria-label="Favorite">
+                                <lucide-icon name="heart" [size]="16" />
+                            </button>
+                            <button kuiButton size="icon" variant="ghost" aria-label="Next">
+                                <lucide-icon name="chevron-right" [size]="16" />
+                            </button>
+                            <button kuiButton size="icon" aria-label="Send email">
+                                <lucide-icon name="mail" [size]="16" />
+                            </button>
+                        </app-component-preview>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading -->
+            <section>
+                <h2 class="mb-4 text-xl font-semibold" id="loading">Loading</h2>
+                <app-component-preview [code]="loadingCode">
+                    <button kuiButton [disabled]="isLoading()" class="inline-flex items-center gap-2" (click)="simulateLoading()">
+                        @if (isLoading()) {
+                            <lucide-icon name="loader-circle" [size]="16" class="animate-spin" />
+                            Please wait...
+                        } @else {
+                            Submit
+                        }
+                    </button>
+                    <button kuiButton variant="outline" [disabled]="isLoading()" class="inline-flex items-center gap-2" (click)="simulateLoading()">
+                        @if (isLoading()) {
+                            <lucide-icon name="loader-circle" [size]="16" class="animate-spin" />
+                        }
+                        Save Changes
+                    </button>
                 </app-component-preview>
             </section>
 
@@ -136,6 +202,8 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
     `,
 })
 export class ButtonDoc {
+    protected readonly isLoading = signal(false);
+
     protected readonly installCode = `import { KuiButton } from 'kui-components';
 
 @Component({
@@ -155,8 +223,44 @@ export class MyComponent {}`;
     protected readonly sizesCode = `<button kuiButton size="sm">Small</button>
 <button kuiButton>Default</button>
 <button kuiButton size="lg">Large</button>
-<button kuiButton size="icon" aria-label="Star">★</button>`;
+<button kuiButton size="icon" aria-label="Heart">
+    <lucide-icon name="heart" [size]="16" />
+</button>`;
+
+    protected readonly iconLeftCode = `<button kuiButton class="inline-flex items-center gap-2">
+    <lucide-icon name="mail" [size]="16" />
+    Login with Email
+</button>`;
+
+    protected readonly iconRightCode = `<button kuiButton class="inline-flex items-center gap-2">
+    Send
+    <lucide-icon name="send" [size]="16" />
+</button>`;
+
+    protected readonly iconOnlyCode = `<button kuiButton size="icon" variant="outline" aria-label="Favorite">
+    <lucide-icon name="heart" [size]="16" />
+</button>
+<button kuiButton size="icon" variant="ghost" aria-label="Next">
+    <lucide-icon name="chevron-right" [size]="16" />
+</button>
+<button kuiButton size="icon" aria-label="Send email">
+    <lucide-icon name="mail" [size]="16" />
+</button>`;
+
+    protected readonly loadingCode = `<button kuiButton [disabled]="isLoading()" class="inline-flex items-center gap-2" (click)="simulateLoading()">
+    @if (isLoading()) {
+        <lucide-icon name="loader-circle" [size]="16" class="animate-spin" />
+        Please wait...
+    } @else {
+        Submit
+    }
+</button>`;
 
     protected readonly disabledCode = `<button kuiButton disabled>Disabled</button>
 <button kuiButton variant="outline" disabled>Disabled</button>`;
+
+    protected simulateLoading(): void {
+        this.isLoading.set(true);
+        setTimeout(() => this.isLoading.set(false), 2000);
+    }
 }

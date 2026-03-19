@@ -41,6 +41,7 @@
         "@ng-primitives/mcp": "^0.112.1",
         "@ngx-translate/core": "^17.0.0",
         "@ngx-translate/http-loader": "^17.0.0",
+        "lucide-angular": "^0.577.0",
         "ng-primitives": "^0.112.1",
         "rxjs": "~7.8.0",
         "tslib": "^2.3.0"
