@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { KuiDescription, KuiError, KuiFormField, KuiInput, KuiLabel } from 'kui-components';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { KuiCharacterCount, KuiDescription, KuiError, KuiFormField, KuiInput, KuiLabel } from 'kui-components';
 import { LucideAngularModule } from 'lucide-angular';
 import { CodeBlock } from '../../../shared/code-block/code-block';
 import { ComponentPreview } from '../../../shared/component-preview/component-preview';
@@ -13,6 +13,7 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
         KuiLabel,
         KuiDescription,
         KuiError,
+        KuiCharacterCount,
         CodeBlock,
         ComponentPreview,
         LucideAngularModule,
@@ -71,9 +72,9 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                                 <lucide-icon
                                     name="search"
                                     [size]="16"
-                                    class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--kui-muted-foreground)]"
+                                    class="pointer-events-none absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center text-[var(--kui-muted-foreground)]"
                                 />
-                                <input kuiInput placeholder="Search..." class="pl-9" />
+                                <input kuiInput placeholder="Search..." class="w-full pl-9" />
                             </div>
                         </app-component-preview>
                     </div>
@@ -82,11 +83,11 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                         <h3 class="mb-2 font-medium">Icon Right</h3>
                         <app-component-preview [code]="iconRightCode">
                             <div class="relative w-full max-w-sm">
-                                <input kuiInput placeholder="you&#64;example.com" type="email" class="pr-9" />
+                                <input kuiInput placeholder="you&#64;example.com" type="email" class="w-full pr-9" />
                                 <lucide-icon
                                     name="mail"
                                     [size]="16"
-                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--kui-muted-foreground)]"
+                                    class="pointer-events-none absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center text-[var(--kui-muted-foreground)]"
                                 />
                             </div>
                         </app-component-preview>
@@ -99,13 +100,13 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                                 <lucide-icon
                                     name="mail"
                                     [size]="16"
-                                    class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--kui-muted-foreground)]"
+                                    class="pointer-events-none absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center text-[var(--kui-muted-foreground)]"
                                 />
-                                <input kuiInput placeholder="you&#64;example.com" type="email" class="pl-9 pr-9" />
+                                <input kuiInput placeholder="you&#64;example.com" type="email" class="w-full pl-9 pr-9" />
                                 <lucide-icon
                                     name="circle-check"
                                     [size]="16"
-                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--kui-success)]"
+                                    class="pointer-events-none absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center text-[var(--kui-success)]"
                                 />
                             </div>
                         </app-component-preview>
@@ -190,6 +191,49 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                 </app-component-preview>
             </section>
 
+            <!-- Character Count -->
+            <section>
+                <h2 class="mb-4 text-xl font-semibold" id="character-count">Character Count</h2>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="mb-2 font-medium">Basic</h3>
+                        <app-component-preview [code]="charCountCode">
+                            <div kuiFormField class="w-full max-w-sm">
+                                <label kuiLabel>Username</label>
+                                <input
+                                    kuiInput
+                                    placeholder="Choose a username"
+                                    maxlength="20"
+                                    (input)="onUsernameInput($event)"
+                                />
+                                <kui-character-count [current]="usernameLength()" [max]="20" />
+                            </div>
+                        </app-component-preview>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-2 font-medium">With Description</h3>
+                        <app-component-preview [code]="charCountWithDescCode">
+                            <div kuiFormField class="w-full max-w-sm">
+                                <label kuiLabel>Bio</label>
+                                <textarea
+                                    kuiInput
+                                    placeholder="Tell us about yourself..."
+                                    class="w-full"
+                                    maxlength="140"
+                                    (input)="onBioInput($event)"
+                                ></textarea>
+                                <div class="flex items-end justify-between">
+                                    <span kuiDescription>Brief description for your profile.</span>
+                                    <kui-character-count [current]="bioLength()" [max]="140" />
+                                </div>
+                            </div>
+                        </app-component-preview>
+                    </div>
+                </div>
+            </section>
+
             <!-- API Reference -->
             <section>
                 <h2 class="mb-4 text-xl font-semibold" id="api">API Reference</h2>
@@ -255,6 +299,11 @@ import { ComponentPreview } from '../../../shared/component-preview/component-pr
                                 <td class="px-4 py-2 font-mono text-xs">[kuiError]</td>
                                 <td class="px-4 py-2 text-xs">Error message for a form control</td>
                             </tr>
+                            <tr>
+                                <td class="px-4 py-2 font-mono text-xs">KuiCharacterCount</td>
+                                <td class="px-4 py-2 font-mono text-xs">kui-character-count</td>
+                                <td class="px-4 py-2 text-xs">Character count indicator (inputs: current, max)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -280,22 +329,22 @@ export class MyComponent {}`;
 
     protected readonly iconLeftCode = `<div class="relative">
     <lucide-icon name="search" [size]="16"
-        class="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-    <input kuiInput placeholder="Search..." class="pl-9" />
+        class="pointer-events-none absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center text-muted" />
+    <input kuiInput placeholder="Search..." class="w-full pl-9" />
 </div>`;
 
     protected readonly iconRightCode = `<div class="relative">
-    <input kuiInput placeholder="you@example.com" type="email" class="pr-9" />
+    <input kuiInput placeholder="you@example.com" type="email" class="w-full pr-9" />
     <lucide-icon name="mail" [size]="16"
-        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted" />
+        class="pointer-events-none absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center text-muted" />
 </div>`;
 
     protected readonly iconBothCode = `<div class="relative">
     <lucide-icon name="mail" [size]="16"
-        class="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-    <input kuiInput placeholder="you@example.com" class="pl-9 pr-9" />
+        class="pointer-events-none absolute left-3 top-1/2 inline-flex -translate-y-1/2 items-center text-muted" />
+    <input kuiInput placeholder="you@example.com" class="w-full pl-9 pr-9" />
     <lucide-icon name="circle-check" [size]="16"
-        class="absolute right-3 top-1/2 -translate-y-1/2 text-success" />
+        class="pointer-events-none absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center text-success" />
 </div>`;
 
     protected readonly successCode = `<div kuiFormField>
@@ -334,4 +383,32 @@ export class MyComponent {}`;
 </div>`;
 
     protected readonly textareaCode = `<textarea kuiInput placeholder="Write your message..."></textarea>`;
+
+    protected readonly charCountCode = `<div kuiFormField>
+    <label kuiLabel>Username</label>
+    <input kuiInput placeholder="Choose a username" [maxlength]="20"
+        (input)="onUsernameInput($event)" />
+    <kui-character-count [current]="usernameLength()" [max]="20" />
+</div>`;
+
+    protected readonly charCountWithDescCode = `<div kuiFormField>
+    <label kuiLabel>Bio</label>
+    <textarea kuiInput placeholder="Tell us about yourself..."
+        [maxlength]="140" (input)="onBioInput($event)"></textarea>
+    <div class="flex items-end justify-between">
+        <span kuiDescription>Brief description for your profile.</span>
+        <kui-character-count [current]="bioLength()" [max]="140" />
+    </div>
+</div>`;
+
+    protected readonly usernameLength = signal(0);
+    protected readonly bioLength = signal(0);
+
+    protected onUsernameInput(event: Event): void {
+        this.usernameLength.set((event.target as HTMLInputElement).value.length);
+    }
+
+    protected onBioInput(event: Event): void {
+        this.bioLength.set((event.target as HTMLTextAreaElement).value.length);
+    }
 }

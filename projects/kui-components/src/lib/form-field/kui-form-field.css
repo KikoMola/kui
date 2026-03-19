@@ -31,3 +31,24 @@
     font-size: 0.8125rem;
     color: var(--kui-warning);
 }
+
+/* ── Character Count ── */
+
+.kui-character-count {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--kui-muted-foreground);
+    text-align: right;
+    margin-top: -0.125rem;
+    transition: color 150ms ease;
+}
+
+.kui-character-count--warning {
+    color: var(--kui-warning);
+}
+
+.kui-character-count--exceeded {
+    color: var(--kui-destructive);
+    font-weight: 500;
+}
