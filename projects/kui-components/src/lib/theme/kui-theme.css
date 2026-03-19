@@ -1,0 +1,7 @@
+@import './_tokens.css';
+
+*,
+*::before,
+*::after {
+    border-color: var(--kui-border);
+}

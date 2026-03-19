@@ -1,0 +1,14 @@
+{
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/kui-components",
+    "lib": {
+        "entryFile": "src/public-api.ts",
+        "cssUrl": "inline"
+    },
+    "assets": [
+        "src/lib/theme/**/*.css",
+        "src/lib/button/**/*.css",
+        "src/lib/input/**/*.css",
+        "src/lib/form-field/**/*.css"
+    ]
+}
